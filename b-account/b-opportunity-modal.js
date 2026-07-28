@@ -1196,39 +1196,7 @@ const BOppApp = (() => {
                 oppId = data.opportunity_id;
                 _newOppId = oppId;
                 for (const qt of _qts) await insertQTToDB(oppId, qt, 'original');
-                // fire-and-forget email notification
-                fetch('https://hdulohaxociujwaziszy.supabase.co/functions/v1/send-notification', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        opportunity_id:   oppId,
-                        opportunity_name: payload.opportunity_name,
-                        create_by:        user?.codename || null,
-                        create_date:      payload.create_date,
-                        account_name:     el('bopp-acc-name').value,
-                        company_name:     (() => { const acc = _accMap?.get(el('bopp-account-id').value); return acc?.company_name || null; })(),
-                        launch_date:      payload.launch_date,
-                        signed_date:      payload.signed_date,
-                        remark:           payload.remark,
-                        business_type:    payload.business_type,
-                        lead_source:      payload.lead_source,
-                        owner:            payload.owner,
-                        am:               payload.am,
-                        sub_am:           payload.sub_am,
-                        materials:        payload.materials,
-                        proposal:         payload.proposal,
-                        amount:           grandAmt,
-                        gp:               grandGP,
-                        qts:              _qts.map(q => ({
-                            qt_number:  q.qt_number,
-                            company_qt: q.company_qt,
-                            _totAmt:    q._totAmt,
-                            _totGP:     q._totGP,
-                            items:      q.items,
-                        })),
-                        to: ['thitiphon@brand-strom.com'],
-                    }),
-                }).catch(err => console.warn('[notify]', err));
+                // email notification disabled — Resend/Edge Function not set up on this project yet
             }
 
             getBsModal().hide();
