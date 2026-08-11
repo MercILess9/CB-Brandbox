@@ -471,10 +471,10 @@ const BOppApp = (() => {
             <td class="c"><select class="bopp-item-sel" data-field="bu"${da}>${buOpts}</select></td>
             <td><textarea class="bopp-item-inp bopp-item-ta" data-field="detail" placeholder="Description..." rows="3"${da}>${escH(item.detail||'')}</textarea></td>
             <td><input type="number" class="bopp-item-inp r" data-field="qty" value="${item.qty||1}" min="0" step="1" inputmode="numeric"${da}></td>
-            <td><input type="number" class="bopp-item-inp r" data-field="price" value="${item.price||''}" min="0" placeholder="0"${da}></td>
-            <td><input type="number" class="bopp-item-inp r bopp-item-disc-inp" data-field="discount" value="${item.discount||''}" min="0" placeholder="0"${da}></td>
+            <td><input type="number" class="bopp-item-inp r" data-field="price" value="${item.price||''}" min="0" step="any" placeholder="0"${da}></td>
+            <td><input type="number" class="bopp-item-inp r bopp-item-disc-inp" data-field="discount" value="${item.discount||''}" min="0" step="any" placeholder="0"${da}></td>
             <td class="bopp-item-amt" data-amt>${amt > 0 ? fmtN(amt) : '0'}</td>
-            <td><input type="number" class="bopp-item-inp r bopp-item-gp-inp" data-field="gp" value="${item.gp||''}" min="0" placeholder="0" style="color:${gp>0?'#16a34a':'#cbd5e1'}; font-weight:700;"${da}></td>
+            <td><input type="number" class="bopp-item-inp r bopp-item-gp-inp" data-field="gp" value="${item.gp||''}" min="0" step="any" placeholder="0" style="color:${gp>0?'#16a34a':'#cbd5e1'}; font-weight:700;"${da}></td>
             <td class="c">${disabled ? '' : `<button type="button" class="bopp-item-rm" onclick="BOppApp.removeItem('${escA(qtTmpId)}',${idx})" title="Delete row"><i class="bi bi-trash3"></i></button>`}</td>
         </tr>`;
     }
