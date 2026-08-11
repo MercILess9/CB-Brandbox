@@ -329,16 +329,6 @@
         fill('filterStatus', _cfgStatus);
     }
 
-    function applyDefaultOwnerFilter() {
-        const user = JSON.parse(sessionStorage.getItem('bx_user') || '{}');
-        if (!user.codename || user.level === 'god') return;
-        const sel = document.getElementById('filterOwner');
-        if (![...sel.options].some(o => o.value === user.codename)) return;
-        _ownerFilter = user.codename;
-        sel.value = user.codename;
-        document.getElementById('flt-owner-wrap')?.classList.add('active-filter');
-    }
-
     async function loadMasterData() {
         const [{ data: idx, error }, { data: accs }, { data: qts }, { data: cfg }] = await Promise.all([
             supabaseClient.from('b_opportunity_list')
@@ -371,7 +361,6 @@
         });
 
         populateFilters(idx || []);
-        applyDefaultOwnerFilter();
     }
 
     // ── Fetch page (server-side paginated) ────────────────────────────────────
